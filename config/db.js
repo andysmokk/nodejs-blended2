@@ -1,10 +1,11 @@
 const { connect } = require("mongoose");
 
 const connectDB = async () => {
-  const db = await connect(process.env.MONGO_DB_URI);
+  const { name, port, host } = db.connection;
+  const uri = process.env.MONGO_DB_URI;
+  const db = await connect(uri);
   console.log(
-    `MongoDB connected: db-name: ${db.connection.name}, PORT: ${db.connection.port}, host: ${db.connection.host}`
-      .cyan
+    `MongoDB connected: db-name: ${name}, PORT: ${port}, host: ${host}`.cyan
   );
 };
 

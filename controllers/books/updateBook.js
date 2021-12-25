@@ -1,14 +1,15 @@
 const Book = require("../../models/Book");
 
 const updateBook = async (req, res) => {
+  const { id } = req.params;
   try {
-    const book = await Book.findByIdAndUpdate(req.params.id, req.body, {
+    const book = await Book.findByIdAndUpdate(id, req.body, {
       new: true,
       runValidators: true,
     });
     if (!book) {
       return res.status(400).json({
-        message: `Cannot update with id: ${req.params.id}`,
+        message: `Cannot update with id: ${id}`,
         code: 400,
         data: book,
       });
